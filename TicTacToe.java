@@ -14,8 +14,8 @@ class TicTacToe
         static char O = 'O';
         public void resetBoard()
         {
-		System.out.println("********************** Wellcome To Tic Tac Toe **********************");
-                int position;
+                System.out.println("********************** Wellcome To Tic Tac Toe **********************");
+                 int position;
                 for(position = START_POSITION ; position < END_POSITION ; position++ )
                 {
                         board[position] = '-';
@@ -70,11 +70,23 @@ class TicTacToe
                 System.out.println("Computer Letter : "+Computer_Symbol);
         }
 
-
+        public void DisplayBoard()
+        {
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |--"+board[0]+"--|--"+board[1]+"--|--"+board[2]+"--|");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |--"+board[3]+"--|--"+board[4]+"--|--"+board[5]+"--|");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |--"+board[6]+"--|--"+board[7]+"--|--"+board[8]+"--|");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        }
         public static void main(String[] args)
         {
                 TicTacToe Game = new TicTacToe();
                 Game.resetBoard();
                 Game.SymbolChoice();
+                Game.DisplayBoard();
         }
 }
