@@ -1,26 +1,25 @@
-
-import java.util.*;
-class TicTacToe
-{
+import java.util.*; class TicTacToe {
 	static final int END_POSITION = 9;
 	static final int START_POSITION = 0;
-	static char[] board =  {'-','-','-','-','-','-','-','-','-'};
+	static char[] board =  {'-','-','-','-','-','-','-','-','-','-'};
 	static int count;
 	static int position;
 	static char Player_Symbol;
 	static char Computer_Symbol;
 	static final int P_NUM = 1;
+	static final int C_NUM = 2;
 	static Scanner scan = new Scanner(System.in);
 	static Random random = new Random();
 	static char X = 'X';
 	static char O = 'O';
 	static int toss;
-
+	static int win = 0;
+	static final int ONE = 0, TWO = 1, THREE = 2, FOUR = 3, FIVE = 4, SIX = 5, SEVEN = 6, EIGHT = 7, NINE = 8;
 	public void resetBoard()
 	{
 		System.out.println("********************** Wellcome To Tic Tac Toe **********************");
 		 int position;
-		for(position = START_POSITION ; position < END_POSITION ; position++ )
+		for(position = START_POSITION ; position <= END_POSITION ; position++ )
 		{
 			board[position] = '-';
 		}
@@ -79,21 +78,32 @@ class TicTacToe
 	{
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("    |-----|-----|-----| ");
-		System.out.println("    |  "+board[0]+"  |  "+board[1]+"  |  "+board[2]+"  |");
+		System.out.println("    |  "+board[ONE]+"  |  "+board[TWO]+"  |  "+board[THREE]+"  |");
 		System.out.println("    |-----|-----|-----| ");
-		System.out.println("    |  "+board[3]+"  |  "+board[4]+"  |  "+board[5]+"  |");
+		System.out.println("    |  "+board[FOUR]+"  |  "+board[FIVE]+"  |  "+board[SIX]+"  |");
 		System.out.println("    |-----|-----|-----| ");
-		System.out.println("    |  "+board[6]+"  |  "+board[7]+"  |  "+board[8]+"  |");
+		System.out.println("    |  "+board[SEVEN]+"  |  "+board[EIGHT]+"  |  "+board[NINE]+"  |");
 		System.out.println("    |-----|-----|-----| ");
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	}
 
 	public void PlayerPlay()
 	{
-		System.out.println("  Enter number to play 0 - 1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 ");
+		CheckWon(P_NUM);
+		System.out.print("  Enter number to play  1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 :");
 		position = scan.nextInt();
-		board[position] = Player_Symbol;
-		DisplayBoard();
+		position--;
+		if(board[position] == '-' )
+		{
+			board[position] = Player_Symbol;
+			DisplayBoard();
+			System.out.println();
+		}
+		else
+		{
+			System.out.println("********** Position Already Occupied **********");
+			PlayerPlay();
+		}
 
 	}
 	public void ComputerPlay()
@@ -101,19 +111,79 @@ class TicTacToe
 
 	}
 
+	public void DisplayWinner(int win)
+	{
+		if(win == P_NUM)
+		{
+			System.out.println("************ Congrats You Won The Match ************ ");
+			System.exit(0);
+		}
+		else if(win == C_NUM)
+		{
+			System.out.println("************ You Lose The Match ************ ");
+			System.exit(0);
+		}
+		else
+		{
+			System.out.println("************ Match Tie ************ ");
+			System.exit(0);
+		}
+	}
+
+	public void CheckWon(int num)
+        {
+                if( board[ONE] == board[TWO] && board[TWO] == board[THREE] && board[THREE] != '-' )
+                {
+                       DisplayWinner(num);
+                }
+                if( board[FOUR] == board[FIVE] && board[FIVE] == board[SIX] && board[SIX] != '-' )
+                {
+                         DisplayWinner(num);
+                }
+                if( board[SEVEN] == board[EIGHT] && board[EIGHT]  == board[NINE] && board[NINE] != '-' )
+                {
+			 DisplayWinner(num);
+                }
+                if( board[ONE] == board[FIVE] && board[FIVE]  == board[NINE] && board[NINE] != '-' )
+                {
+                        DisplayWinner(num);
+                }
+                if( board[THREE] == board[FIVE] && board[FIVE] == board[SEVEN] && board[SEVEN] != '-' )
+                {
+                         DisplayWinner(num);
+                }
+
+                if( board[TWO] == board[FIVE] && board[FIVE] == board[EIGHT] && board[EIGHT] != '-' )
+                {
+                        DisplayWinner(num);
+
+                }
+                if( board[ONE] == board[FOUR] && board[FOUR] == board[SEVEN] && board[SEVEN] != '-' )
+                {
+			 DisplayWinner(num);
+                }
+                if( board[THREE] == board[SIX] && board[SIX] == board[NINE] && board[NINE] != '-' )
+                {
+			 DisplayWinner(num);
+
+                }
+        }
+
+
 	public void GamePlayed()
 	{
 		if( toss == P_NUM)
 		{
-			for(position = START_POSITION ; position < END_POSITION ; position++ )
+			for(count = START_POSITION ; count < END_POSITION ; count++ )
 			{
 				PlayerPlay();
 				ComputerPlay();
+
 			}
 		}
 		else
 		{
-			for(position = START_POSITION ; position < END_POSITION ; position++ )
+			for(count = START_POSITION ; count < END_POSITION ; count++ )
 			{
 				ComputerPlay();
 				PlayerPlay();
@@ -130,6 +200,7 @@ class TicTacToe
 		Game.SymbolChoice();
 		Game.DisplayBoard();
 		Game.GamePlayed();
+	//	Game.DisplayWinner();
 	}
 }
 
