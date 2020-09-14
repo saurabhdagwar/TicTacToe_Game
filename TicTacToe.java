@@ -13,6 +13,7 @@ import java.util.*; class TicTacToe {
 	static char X = 'X';
 	static char O = 'O';
 	static int toss;
+	static int AllowComp = 1 ;
 	static int win = 0;
 	static final int ONE = 0, TWO = 1, THREE = 2, FOUR = 3, FIVE = 4, SIX = 5, SEVEN = 6, EIGHT = 7, NINE = 8;
 	public void resetBoard()
@@ -106,10 +107,215 @@ import java.util.*; class TicTacToe {
 		}
 
 	}
-	public void ComputerPlay()
-	{
 
-	}
+        public void CompWinningMove()
+        {
+                if( AllowComp == TWO )
+                {
+                        if((board[ONE] == board[NINE] && board[NINE] == Computer_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Computer_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Computer_Symbol) && ( board[FIVE] == '-' ))
+                        {
+                                 board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[TWO] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FOUR] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[NINE] && board[NINE] == Computer_Symbol) && ( board[ONE] == '-') )
+                        {
+                                board[ONE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SIX] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) && ( board[THREE] == '-'))
+                        {
+                                 board[THREE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[EIGHT] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[THREE] && board[FIVE] == Computer_Symbol) && ( board[SEVEN] == '-'))
+                        {
+                                 board[SEVEN] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[THREE] == board[SIX] && board[THREE] == Computer_Symbol) || (board[EIGHT] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[ONE] && board[ONE] == Computer_Symbol) && ( board[NINE] == '-'))
+                        {
+                                board[NINE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FIVE] == board[EIGHT] &&  board[EIGHT] == Computer_Symbol ) )
+                        {
+                                if( board[TWO] == '-')
+                                {
+                                board[TWO] = Computer_Symbol;
+                                }
+                                AllowComp = ONE;
+                        }
+                        else if(( board[ONE] == board[SEVEN] && board[SEVEN] == Computer_Symbol ) || (board[FIVE] == board[SIX] && board[SIX] == Computer_Symbol)&& (board[FOUR] == '-'))
+                        {
+                                board[FOUR] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SEVEN] == board[NINE] && board[NINE] == Computer_Symbol) && board[EIGHT] == '-')
+                        {
+                                board[EIGHT] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[THREE] == board[NINE] && board[NINE] == Computer_Symbol) && board[SIX] == '-')
+                        {
+                                board[SIX] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                }
+
+        }
+
+
+
+        public void CompDefendingMove()
+        {
+                if(AllowComp == TWO )
+                {
+
+                        if((board[ONE] == board[NINE] && board[NINE] == Player_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Player_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Player_Symbol) && board[FIVE] == '-'  )
+                        {
+                                 board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[TWO] == board[THREE] && board[THREE] == Player_Symbol) || (board[FOUR] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[FIVE] == board[NINE] && board[NINE] == Player_Symbol) && board[ONE] == '-' )
+                        {
+                                board[ONE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[TWO] && board[TWO] == Player_Symbol) || (board[SIX] == board[NINE] && board[NINE] == Player_Symbol) || (board[FIVE] == board[SEVEN] && board[SEVEN] == Player_Symbol) && board[THREE] == '-')
+                        {
+                                 board[THREE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[FOUR] && board[FOUR] == Player_Symbol) || (board[EIGHT] == board[NINE] && board[NINE] == Player_Symbol) || (board[FIVE] == board[THREE] && board[FIVE] == Player_Symbol) && board[SEVEN] == '-')
+                        {
+                                board[SEVEN] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[THREE] == board[SIX] && board[THREE] == Player_Symbol) || (board[EIGHT] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[FIVE] == board[ONE] && board[ONE] == Player_Symbol) && board[NINE] == '-' )
+                        {
+                                board[NINE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+
+                        else if((board[ONE] == board[THREE] && board[THREE] == Player_Symbol) || (board[FIVE] == board[EIGHT] && board[EIGHT] == Player_Symbol) && board[TWO] == '-')
+                        {
+                                board[TWO] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[ONE] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[FIVE] == board[SIX] && board[SIX] == Player_Symbol) && board[FOUR] == '-')
+                        {
+                                board[FOUR] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[TWO] && board[TWO] == Player_Symbol) || (board[SEVEN] == board[NINE] && board[NINE] == Player_Symbol)&& board[EIGHT] == '-' )
+                        {
+                                board[EIGHT] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[FOUR] && board[FOUR] == Player_Symbol) || (board[THREE] == board[NINE] && board[NINE] == Player_Symbol) && board[SIX] == '-' )
+                        {
+                                board[SIX] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                }
+        }
+
+      public void CompPositionChoose()
+        {
+
+                if(AllowComp == TWO )
+                {
+                        int CompRand = random.nextInt(4);
+                        if( board[ONE] == '-' )
+                        {
+                                board[ONE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[THREE] == '-')
+                        {
+                                board[THREE] = Computer_Symbol ;
+                                AllowComp = ONE;
+                        }
+                        else  if(board[SEVEN] == '-')
+                        {
+                                board[SEVEN] = Computer_Symbol ;
+                                AllowComp = ONE;
+                        }
+                        else if(board[NINE] == '-')
+                        {
+                                board[NINE] = Computer_Symbol ;
+                                AllowComp = ONE;
+                        }
+
+                        else if(board[FIVE] == '-')
+                        {
+                                board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[TWO] == '-')
+                        {
+                                board[TWO] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[FOUR] == '-')
+                        {
+                                board[FOUR] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[EIGHT] == '-')
+                        {
+                                board[EIGHT] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[SIX] == '-')
+                        {
+                                board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                }
+
+        }
+
+
+        public void ComputerPlay()
+        {
+                System.out.println("++++++ Computer Turn ++++++");
+
+                try
+                {
+
+                         if( AllowComp == TWO )
+                        {
+                                Thread.sleep(1000);
+                                CompWinningMove();
+				CompDefendingMove();
+        			CompPositionChoose(); 
+	                       	DisplayBoard();
+                                System.out.println();
+                        }
+
+                }
+
+                catch(InterruptedException e)
+                {
+                        System.out.println(e);
+                }
+
+                CheckWon(C_NUM);
+
+        }
+
 
 	public void DisplayWinner(int win)
 	{
