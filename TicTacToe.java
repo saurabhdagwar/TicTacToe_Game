@@ -13,6 +13,7 @@ import java.util.*; class TicTacToe {
 	static char X = 'X';
 	static char O = 'O';
 	static int toss;
+	static int AllowComp = 1 ;
 	static int win = 0;
 	static final int ONE = 0, TWO = 1, THREE = 2, FOUR = 3, FIVE = 4, SIX = 5, SEVEN = 6, EIGHT = 7, NINE = 8;
 	public void resetBoard()
@@ -106,9 +107,13 @@ import java.util.*; class TicTacToe {
 		}
 
 	}
+
 	public void ComputerPlay()
 	{
-
+		if( AllowComp == TWO )
+		{
+//Play Computer on turn
+		}
 	}
 
 	public void DisplayWinner(int win)
