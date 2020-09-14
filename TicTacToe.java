@@ -116,8 +116,19 @@ class TicTacToe
 	}
 	public void CompWinningMove()
 	{
-		if( AllowComp == TWO )
-		{
+
+	}
+	
+	public void CompDefendingMove()
+	{
+	
+	}
+
+
+	public void CompPositionChoose()
+	{
+
+// Winning Moves 
 			if((board[ONE] == board[NINE] && board[NINE] == Computer_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Computer_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Computer_Symbol) && ( board[FIVE] == '-' ))
 			{
 				 board[FIVE] = Computer_Symbol;
@@ -172,16 +183,8 @@ class TicTacToe
 				AllowComp = ONE;
 			}
 
-		}
-
-	}
-	
-	public void CompDefendingMove()
-	{
-		if(AllowComp == TWO )
-		{
-
-			if((board[ONE] == board[NINE] && board[NINE] == Player_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Player_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Player_Symbol) && board[FIVE] == '-'  )
+// Defended Moves
+			else if((board[ONE] == board[NINE] && board[NINE] == Player_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Player_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Player_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Player_Symbol) && board[FIVE] == '-'  )
 			{
 				 board[FIVE] = Computer_Symbol;
 				AllowComp = ONE;
@@ -231,17 +234,9 @@ class TicTacToe
 	 			board[SIX] = Computer_Symbol;
 				AllowComp = ONE;
 			}
-		}
-	}
 
-
-	public void CompPositionChoose()
-	{
-		
-		if(AllowComp == TWO )
-		{
-			int CompRand = random.nextInt(4);
-			if( board[ONE] == '-' )
+//Any Available Moves 
+			else if( board[ONE] == '-' )
 			{
 				board[ONE] = Computer_Symbol;
 				AllowComp = ONE;
@@ -287,7 +282,6 @@ class TicTacToe
 				board[FIVE] = Computer_Symbol;
 				AllowComp = ONE;
 			}
-		}
 		
 	}
 
@@ -351,7 +345,7 @@ class TicTacToe
 		}
 		if( board[SEVEN] == board[EIGHT] && board[EIGHT]  == board[NINE] && board[NINE] != '-' )
 		{
-				 DisplayWinner(num);
+			 DisplayWinner(num);
 		}
 		if( board[ONE] == board[FIVE] && board[FIVE]  == board[NINE] && board[NINE] != '-' )
 		{
