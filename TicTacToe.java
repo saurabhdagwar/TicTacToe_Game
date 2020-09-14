@@ -108,13 +108,96 @@ import java.util.*; class TicTacToe {
 
 	}
 
-	public void ComputerPlay()
-	{
-		if( AllowComp == TWO )
-		{
-//Play Computer on turn
-		}
-	}
+        public void CompWinningMove()
+        {
+                if( AllowComp == TWO )
+                {
+                        if((board[ONE] == board[NINE] && board[NINE] == Computer_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Computer_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Computer_Symbol) && ( board[FIVE] == '-' ))
+                        {
+                                 board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[TWO] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FOUR] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[NINE] && board[NINE] == Computer_Symbol) && ( board[ONE] == '-') )
+                        {
+                                board[ONE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SIX] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) && ( board[THREE] == '-'))
+                        {
+                                 board[THREE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[EIGHT] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[THREE] && board[FIVE] == Computer_Symbol) && ( board[SEVEN] == '-'))
+                        {
+                                 board[SEVEN] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[THREE] == board[SIX] && board[THREE] == Computer_Symbol) || (board[EIGHT] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[ONE] && board[ONE] == Computer_Symbol) && ( board[NINE] == '-'))
+                        {
+                                board[NINE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                        else if((board[ONE] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FIVE] == board[EIGHT] &&  board[EIGHT] == Computer_Symbol ) )
+                        {
+                                if( board[TWO] == '-')
+                                {
+                                board[TWO] = Computer_Symbol;
+                                }
+                                AllowComp = ONE;
+                        }
+                        else if(( board[ONE] == board[SEVEN] && board[SEVEN] == Computer_Symbol ) || (board[FIVE] == board[SIX] && board[SIX] == Computer_Symbol)&& (board[FOUR] == '-'))
+                        {
+                                board[FOUR] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SEVEN] == board[NINE] && board[NINE] == Computer_Symbol) && board[EIGHT] == '-')
+                        {
+                                board[EIGHT] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if((board[FIVE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[THREE] == board[NINE] && board[NINE] == Computer_Symbol) && board[SIX] == '-')
+                        {
+                                board[SIX] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+
+                }
+
+        }
+
+
+        public void ComputerPlay()
+        {
+                System.out.println("++++++ Computer Turn ++++++");
+
+                try
+                {
+
+                         if( AllowComp == TWO )
+                        {
+                                Thread.sleep(1000);
+                                CompWinningMove();
+
+                                DisplayBoard();
+                                System.out.println();
+                        }
+
+                }
+
+                catch(InterruptedException e)
+                {
+                        System.out.println(e);
+                }
+
+                CheckWon(C_NUM);
+
+        }
+
 
 	public void DisplayWinner(int win)
 	{
