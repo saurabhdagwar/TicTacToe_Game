@@ -231,7 +231,7 @@ import java.util.*; class TicTacToe {
                 }
         }
 
-        public void CompPositionChoose()
+      public void CompPositionChoose()
         {
 
                 if(AllowComp == TWO )
@@ -263,8 +263,31 @@ import java.util.*; class TicTacToe {
                                 board[FIVE] = Computer_Symbol;
                                 AllowComp = ONE;
                         }
-          	}
-	}
+                        else if(board[TWO] == '-')
+                        {
+                                board[TWO] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[FOUR] == '-')
+                        {
+                                board[FOUR] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[EIGHT] == '-')
+                        {
+                                board[EIGHT] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                        else if(board[SIX] == '-')
+                        {
+                                board[FIVE] = Computer_Symbol;
+                                AllowComp = ONE;
+                        }
+                }
+
+        }
+
+
         public void ComputerPlay()
         {
                 System.out.println("++++++ Computer Turn ++++++");
