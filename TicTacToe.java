@@ -1,30 +1,51 @@
 import java.util.*;
 class TicTacToe
 {
-        static final int END_POSITION = 9;
-        static final int START_POSITION = 0;
-        static char[] board =  {'-','-','-','-','-','-','-','-','-'};
-        static int count;
-        static char Player_Symbol;
+	static final int END_POSITION = 9;
+	static final int START_POSITION = 1;
+	static char[] board =  {'-','-','-','-','-','-','-','-','-','-'};
+	static int count;
+	static final int ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FIVE = 5, SIX = 6, SEVEN = 7, EIGHT = 8, NINE = 9;
+	static final int P_NUM = 1;
+        static final int C_NUM = 2;
+	static char Player_Symbol;
         static char Computer_Symbol;
-        static final int P_NUM = 1;
-        static Scanner scan = new Scanner(System.in);
-        static Random random = new Random();
-        static char X = 'X';
-        static char O = 'O';
-        public void resetBoard()
+	static Random random = new Random();
+	static Scanner scan = new Scanner(System.in);
+	static final char X = 'X';
+	static final char O = 'O';
+	static int toss;
+	static int position = 1 ;
+
+// Program start
+	public void resetBoard()
+	{
+		System.out.println("********************** Wellcome To Tic Tac Toe **********************");
+		System.out.println("Resetting Board");
+
+		 int position;
+		for(position = START_POSITION ; position <= END_POSITION ; position++ )
+		{
+			board[position] = '-';
+		}
+	}
+       
+	 public void DisplayBoard()
         {
-                System.out.println("********************** Wellcome To Tic Tac Toe **********************");
-                 int position;
-                for(position = START_POSITION ; position < END_POSITION ; position++ )
-                {
-                        board[position] = '-';
-                }
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |  "+board[ONE]+"  |  "+board[TWO]+"  |  "+board[THREE]+"  |");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |  "+board[FOUR]+"  |  "+board[FIVE]+"  |  "+board[SIX]+"  |");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("    |  "+board[SEVEN]+"  |  "+board[EIGHT]+"  |  "+board[NINE]+"  |");
+                System.out.println("    |-----|-----|-----| ");
+                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
-        public int toss()
+	public void tossRandom()
         {
 
-                int toss = random.nextInt(2);
+                toss = random.nextInt(2);
                 if( toss == P_NUM)
                 {
                         System.out.println("You Won The Toss");
@@ -33,11 +54,12 @@ class TicTacToe
                 {
                         System.out.println("Computer Won The Toss");
                 }
-                return toss;
+
         }
+
         public void SymbolChoice()
         {
-                int toss = toss();
+
                 if( toss == P_NUM)
                 {
                         System.out.print("Select Letter as your choice X and O : ");
@@ -46,12 +68,22 @@ class TicTacToe
                         if( Player_Symbol == X )
                         {
                                 Computer_Symbol = O;
+                                System.out.println("Player Letter : "+Player_Symbol);
+                                System.out.println("Computer Letter : "+Computer_Symbol);
+
+                        }
+                        else if( Player_Symbol == O )
+                        {
+                                Computer_Symbol = X;
+                                System.out.println("Player Letter : "+Player_Symbol);
+                                System.out.println("Computer Letter : "+Computer_Symbol);
                         }
                         else
                         {
-                                Computer_Symbol = X;
+                                System.out.println("Not taken valid Symbol ! Try Again ! ");
+                                SymbolChoice();
                         }
-                }
+                        }
                 else
                 {
                         int computer_random = random.nextInt(2);
@@ -63,30 +95,69 @@ class TicTacToe
                         else
                         {
                                 Computer_Symbol = O;
-                                 Player_Symbol = X;
+                                Player_Symbol = X;
                         }
+                        System.out.println("Player Letter : "+Player_Symbol);
+                        System.out.println("Computer Letter : "+Computer_Symbol);
+
                 }
-                System.out.println("Player Letter : "+Player_Symbol);
-                System.out.println("Computer Letter : "+Computer_Symbol);
         }
 
-        public void DisplayBoard()
+        public void PlayerPlay()
         {
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                System.out.println("    |-----|-----|-----| ");
-                System.out.println("    |--"+board[0]+"--|--"+board[1]+"--|--"+board[2]+"--|");
-                System.out.println("    |-----|-----|-----| ");
-                System.out.println("    |--"+board[3]+"--|--"+board[4]+"--|--"+board[5]+"--|");
-                System.out.println("    |-----|-----|-----| ");
-                System.out.println("    |--"+board[6]+"--|--"+board[7]+"--|--"+board[8]+"--|");
-                System.out.println("    |-----|-----|-----| ");
-                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+//                CheckWon(P_NUM);
+                System.out.print("  Enter number to play  1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 :");
+                position = scan.nextInt();
+
+                if(board[position] == '-' )
+                {
+                        board[position] = Player_Symbol;
+                        DisplayBoard();
+                        System.out.println();
+                }
+                else
+                {
+                        System.out.println("********** Position Already Occupied **********");
+                        PlayerPlay();
+                }
+//                AllowComp = TWO;
         }
-        public static void main(String[] args)
+
+        public void GamePlayed()
         {
-                TicTacToe Game = new TicTacToe();
-                Game.resetBoard();
-                Game.SymbolChoice();
-                Game.DisplayBoard();
+		int count;
+                if( toss == P_NUM)
+                {
+                        for(count = START_POSITION ; count <= FIVE; count++ )
+                        {
+                                PlayerPlay();
+//                                ComputerPlay();
+
+                        }
+                }
+                else
+                {
+                        for(count = START_POSITION ; count <= FIVE ; count++ )
+                        {
+//                                ComputerPlay();
+                                PlayerPlay();
+                        }
+                }
         }
+
+
+
+
+//Main Program
+
+	public static void main(String[] args)
+	{
+		TicTacToe Game = new TicTacToe();
+		Game.resetBoard();
+		Game.DisplayBoard();
+		Game.tossRandom();
+		Game.SymbolChoice();
+		Game.GamePlayed();
+	}
 }
+
