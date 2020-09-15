@@ -1,9 +1,9 @@
 import java.util.*; class TicTacToe {
 	static final int END_POSITION = 9;
-	static final int START_POSITION = 0;
+	static final int START_POSITION = 1;
 	static char[] board =  {'-','-','-','-','-','-','-','-','-','-'};
 	static int count;
-	static int position;
+	static int position = 1 ;
 	static char Player_Symbol;
 	static char Computer_Symbol;
 	static final int P_NUM = 1;
@@ -15,7 +15,7 @@ import java.util.*; class TicTacToe {
 	static int toss;
 	static int AllowComp = 1 ;
 	static int win = 0;
-	static final int ONE = 0, TWO = 1, THREE = 2, FOUR = 3, FIVE = 4, SIX = 5, SEVEN = 6, EIGHT = 7, NINE = 8;
+	static final int ONE = 1, TWO = 2, THREE = 3, FOUR = 4, FIVE = 5, SIX = 6, SEVEN = 7, EIGHT = 8, NINE = 9;
 	public void resetBoard()
 	{
 		System.out.println("********************** Wellcome To Tic Tac Toe **********************");
@@ -50,10 +50,20 @@ import java.util.*; class TicTacToe {
 			if( Player_Symbol == X )
 			{
 				Computer_Symbol = O;
+				System.out.println("Player Letter : "+Player_Symbol);
+				System.out.println("Computer Letter : "+Computer_Symbol);
+
+			}
+			else if( Player_Symbol == O )
+			{
+				Computer_Symbol = X;
+				System.out.println("Player Letter : "+Player_Symbol);
+				System.out.println("Computer Letter : "+Computer_Symbol);
 			}
 			else
 			{
-				Computer_Symbol = X;
+				System.out.println("Not taken valid Symbol ! Try Again ! ");
+				SymbolChoice();
 			}
 			}
 		else
@@ -69,9 +79,10 @@ import java.util.*; class TicTacToe {
 				Computer_Symbol = O;
 				Player_Symbol = X;
 			}
-		}
 			System.out.println("Player Letter : "+Player_Symbol);
 			System.out.println("Computer Letter : "+Computer_Symbol);
+
+		}
 	}
 
 
@@ -93,7 +104,7 @@ import java.util.*; class TicTacToe {
 		CheckWon(P_NUM);
 		System.out.print("  Enter number to play  1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 :");
 		position = scan.nextInt();
-		position--;
+
 		if(board[position] == '-' )
 		{
 			board[position] = Player_Symbol;
@@ -105,70 +116,23 @@ import java.util.*; class TicTacToe {
 			System.out.println("********** Position Already Occupied **********");
 			PlayerPlay();
 		}
-
+		AllowComp = TWO;
 	}
 
-        public void CompWinningMove()
-        {
-                if( AllowComp == TWO )
-                {
-                        if((board[ONE] == board[NINE] && board[NINE] == Computer_Symbol) || (board[THREE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[TWO] == board[EIGHT] && board[EIGHT] == Computer_Symbol) ||(board[FOUR] == board[SIX] && board[SIX] == Computer_Symbol) && ( board[FIVE] == '-' ))
-                        {
-                                 board[FIVE] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
+	public void CompWinningMove()
+	{
 
-                        else if((board[TWO] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FOUR] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[NINE] && board[NINE] == Computer_Symbol) && ( board[ONE] == '-') )
-                        {
-                                board[ONE] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
 
-                        else if((board[ONE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SIX] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[SEVEN] && board[SEVEN] == Computer_Symbol) && ( board[THREE] == '-'))
-                        {
-                                 board[THREE] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
+		
+			for(int row = ONE; row < THREE ; row++)
+			{
+				if(board[row ] == board[row + TWO] )
+				{
+					//board[]
+				}
+			}
 
-                        else if((board[ONE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[EIGHT] == board[NINE] && board[NINE] == Computer_Symbol) || (board[FIVE] == board[THREE] && board[FIVE] == Computer_Symbol) && ( board[SEVEN] == '-'))
-                        {
-                                 board[SEVEN] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
-
-                        else if((board[THREE] == board[SIX] && board[THREE] == Computer_Symbol) || (board[EIGHT] == board[SEVEN] && board[SEVEN] == Computer_Symbol) || (board[FIVE] == board[ONE] && board[ONE] == Computer_Symbol) && ( board[NINE] == '-'))
-                        {
-                                board[NINE] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
-
-                        else if((board[ONE] == board[THREE] && board[THREE] == Computer_Symbol) || (board[FIVE] == board[EIGHT] &&  board[EIGHT] == Computer_Symbol ) )
-                        {
-                                if( board[TWO] == '-')
-                                {
-                                board[TWO] = Computer_Symbol;
-                                }
-                                AllowComp = ONE;
-                        }
-                        else if(( board[ONE] == board[SEVEN] && board[SEVEN] == Computer_Symbol ) || (board[FIVE] == board[SIX] && board[SIX] == Computer_Symbol)&& (board[FOUR] == '-'))
-                        {
-                                board[FOUR] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
-                        else if((board[FIVE] == board[TWO] && board[TWO] == Computer_Symbol) || (board[SEVEN] == board[NINE] && board[NINE] == Computer_Symbol) && board[EIGHT] == '-')
-                        {
-                                board[EIGHT] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
-                        else if((board[FIVE] == board[FOUR] && board[FOUR] == Computer_Symbol) || (board[THREE] == board[NINE] && board[NINE] == Computer_Symbol) && board[SIX] == '-')
-                        {
-                                board[SIX] = Computer_Symbol;
-                                AllowComp = ONE;
-                        }
-
-                }
-
-        }
+	}
 
 
         public void ComputerPlay()
@@ -220,41 +184,34 @@ import java.util.*; class TicTacToe {
 
 	public void CheckWon(int num)
         {
-                if( board[ONE] == board[TWO] && board[TWO] == board[THREE] && board[THREE] != '-' )
-                {
-                       DisplayWinner(num);
-                }
-                if( board[FOUR] == board[FIVE] && board[FIVE] == board[SIX] && board[SIX] != '-' )
-                {
-                         DisplayWinner(num);
-                }
-                if( board[SEVEN] == board[EIGHT] && board[EIGHT]  == board[NINE] && board[NINE] != '-' )
-                {
-			 DisplayWinner(num);
-                }
-                if( board[ONE] == board[FIVE] && board[FIVE]  == board[NINE] && board[NINE] != '-' )
-                {
-                        DisplayWinner(num);
-                }
-                if( board[THREE] == board[FIVE] && board[FIVE] == board[SEVEN] && board[SEVEN] != '-' )
-                {
-                         DisplayWinner(num);
-                }
 
-                if( board[TWO] == board[FIVE] && board[FIVE] == board[EIGHT] && board[EIGHT] != '-' )
-                {
-                        DisplayWinner(num);
+	
+	for(int row = ONE; row < FOUR ; row++ )
+	{	
+//Winning in Rows
+		int second = row + ONE;
+		int third = row + TWO;
+		if(board[row] == board[second] && board[row] == board[third] && board[row] != '-' )
+		{
+			DisplayWinner(num);
 
-                }
-                if( board[ONE] == board[FOUR] && board[FOUR] == board[SEVEN] && board[SEVEN] != '-' )
-                {
-			 DisplayWinner(num);
-                }
-                if( board[THREE] == board[SIX] && board[SIX] == board[NINE] && board[NINE] != '-' )
-                {
-			 DisplayWinner(num);
+		}
 
-                }
+		}
+//Winning in Column
+		for(int col = ONE; col < FOUR ; col++)
+		{
+			if(board[col] == board[col + THREE] && board[col] == board[col + SIX] && board[col] != '-')
+			{
+				DisplayWinner(num);	
+			}
+		}
+//Winning in Diagonal
+			if((board[ONE] == board[FIVE] && board[FIVE] == board[NINE] && board[FIVE] != '-' ) || (board[THREE] == board[FIVE] && board[FIVE] == board[SEVEN] && board[FIVE] != '-'))
+		{
+			DisplayWinner(num);	
+		}
+
         }
 
 
@@ -262,7 +219,7 @@ import java.util.*; class TicTacToe {
 	{
 		if( toss == P_NUM)
 		{
-			for(count = START_POSITION ; count < END_POSITION ; count++ )
+			for(count = START_POSITION ; count < FIVE ; count++ )
 			{
 				PlayerPlay();
 				ComputerPlay();
@@ -271,7 +228,7 @@ import java.util.*; class TicTacToe {
 		}
 		else
 		{
-			for(count = START_POSITION ; count < END_POSITION ; count++ )
+			for(count = START_POSITION ; count < FIVE ; count++ )
 			{
 				ComputerPlay();
 				PlayerPlay();
