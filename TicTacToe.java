@@ -56,6 +56,7 @@ class TicTacToe
                 {
                         System.out.println("Computer Won The Toss");
                 }
+		 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         }
 
@@ -85,6 +86,7 @@ class TicTacToe
                                 System.out.println("Not taken valid Symbol ! Try Again ! ");
                                 SymbolChoice();
                         }
+	                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         }
                 else
                 {
@@ -101,6 +103,8 @@ class TicTacToe
                         }
                         System.out.println("Player Letter : "+Player_Symbol);
                         System.out.println("Computer Letter : "+Computer_Symbol);
+	                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
 
                 }
         }
@@ -110,7 +114,8 @@ class TicTacToe
  
 		System.out.println("++++++ Your Turn ++++++");
                 System.out.print("  Enter number to play  1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 :");
-                position = scan.nextInt();
+               System.out.println();
+		 position = scan.nextInt();
 
                 if(board[position] == '-' )
                 {
@@ -125,233 +130,144 @@ class TicTacToe
                 }
                 AllowComp = TWO;
 		CheckWon(P_NUM, Player_Symbol);
+		count++;
         }
-//Winning Move Computer
-	public void WinningMove()
+//Winning and Defending Moves of Computer
+	public void WinningMove( char Symbol )
 	{
+		int temp;
 		if(AllowComp == TWO )
 		{
-		 	for(int row = ONE; row <= THREE ; row++ )
+	//Winning or Defending move in Rows
+			for(int row = ONE; row <= EIGHT ; row += THREE )
 	                {
-	//Winning move in Rows
-	                        if( board[row+ONE] == board[row+TWO] && board[row + ONE ] == Computer_Symbol && board[row] == '-'  )
+	                        if( board[row + ONE] == board[row + TWO] && board[row + TWO ] == Symbol && board[row] == '-' )
 	                        {
 	                                board[row] = Computer_Symbol;
 					AllowComp--;
-					System.out.println("_______Computer Winning Move________r");
+					System.out.println("_______Computer Move________r");
 
 	                        }
-				else if( board[row] == board[row+TWO] && board[row] == Computer_Symbol && board[row + ONE] == '-' )
-				{
-					 board[row + ONE] = Computer_Symbol;
+	                        else if( board[row] ==  board[row + TWO ] && board[row] == Symbol && board[row + ONE ] == '-')
+	                        {
+	                                 board[row + ONE] = Computer_Symbol;
 					 AllowComp--;
-				  	 System.out.println("_______Computer Winning Move________r");
+					 System.out.println("_______Computer Move________r");
 
-				}
-				else if( board[row] == board[row + ONE] && board[row] == Computer_Symbol && board[row + TWO ] == '-')
-				{
-				 	board[row + TWO] = Computer_Symbol;
-					AllowComp--;
-					System.out.println("_______Computer Winning Move________r");
+	                        }
+	                        else if( board[row] == board[row + ONE] && board[row] == Symbol && board[row + TWO] == '-')
+	                        {
+	                                board[row + TWO ] = Computer_Symbol;
+					AllowComp--; 
+					System.out.println("_______Computer Move________r");
 
-				}
+	                        }
 	                }
+	
 		}
-	//Winning move in Column
+	//Winning or Defending move in Column
 	                if(AllowComp == TWO )
 			{
 				for(int col = ONE; col <= THREE ; col++)
 		                {
-		                        if( board[col + THREE] == board[col + SIX] && board[col + THREE ] == Computer_Symbol && board[col] == '-' )
+		                        if( board[col + THREE] == board[col + SIX] && board[col + THREE ] == Symbol && board[col] == '-' )
 		                        {
 		                                board[col] = Computer_Symbol;
 						AllowComp--;
-						System.out.println("_______Computer Winning Move________c");
+						System.out.println("_______Computer Move________c");
 
 		                        }
 
-		                        else if( board[col] ==  board[col + SIX ] && board[col] == Computer_Symbol && board[col + THREE ] == '-')
+		                        else if( board[col] ==  board[col + SIX ] && board[col] == Symbol && board[col + THREE ] == '-')
 		                        {
 		                                 board[col + THREE] = Computer_Symbol;
 						 AllowComp--;
-						 System.out.println("_______Computer Winning Move________c");
+						 System.out.println("_______Computer Move________c");
 
 		                        }
-		                        else if( board[col] == board[col + THREE] && board[col] == Computer_Symbol && board[col + SIX] == '-')
+		                        else if( board[col] == board[col + THREE] && board[col] == Symbol && board[col + SIX] == '-')
 		                        {
 		                                board[col + SIX] = Computer_Symbol;
 						AllowComp--; 
-						System.out.println("_______Computer Winning Move________c");
+						System.out.println("_______Computer Move________c");
 
 		                        }
 		                }
 			}
-	//Winning move in Diagonal
+	//Winning of Defending move in Diagonal
 
 			if(AllowComp == TWO)
 			{
-		                if(((board[ONE] == board[NINE] && board[NINE] == Computer_Symbol ) || (board[THREE] == board[SEVEN] && board[SEVEN] == Computer_Symbol)) && ( board[FIVE] == '-'))
+		                if(((board[ONE] == board[NINE] && board[NINE] == Symbol ) || (board[THREE] == board[SEVEN] && board[SEVEN] == Symbol)) && ( board[FIVE] == '-'))
 				{
 					board[FIVE] = Computer_Symbol; 
 					AllowComp--;
-					System.out.println("_______Computer Winning Move________5d");
+					System.out.println("_______Computer Move________5d");
 
 				}
-				else if(board[FIVE] == board[NINE] && board[NINE] == Computer_Symbol && board[ONE] == '-' )
+				else if(board[FIVE] == board[NINE] && board[NINE] == Symbol && board[ONE] == '-' )
 				{
 					board[ONE] = Computer_Symbol;
 		                        AllowComp--;
-					System.out.println("_______Computer Winning Move________1d");
+					System.out.println("_______Computer Move________1d");
 
 				}
-				else if(board[FIVE] == board[ONE] && board[FIVE] == Computer_Symbol && board[NINE] == '-')
+				else if(board[FIVE] == board[ONE] && board[FIVE] == Symbol && board[NINE] == '-')
 		                {
 		                        board[NINE] = Computer_Symbol;
 		                        AllowComp--;
-					System.out.println("_______Computer Winning Move________9d");
+					System.out.println("_______Computer Move________9d");
 			        }
-				else if(board[FIVE] == board[SEVEN] && board[SEVEN] == Computer_Symbol && board[THREE] == '-')
+				else if(board[FIVE] == board[SEVEN] && board[SEVEN] == Symbol && board[THREE] == '-')
 		                {
 		                        board[THREE] = Computer_Symbol;
 			                AllowComp--;
-					System.out.println("_______Computer Winning Move________3d");
+					System.out.println("_______Computer Move________3d");
 
 		                }
-		                else if(board[FIVE] == board[THREE] && board[FIVE] == Computer_Symbol && board[SEVEN] == '-' )
+		                else if(board[FIVE] == board[THREE] && board[FIVE] == Symbol && board[SEVEN] == '-' )
 		                {
 		                        board[SEVEN] = Computer_Symbol;
 		                      	AllowComp--;
-					System.out.println("_______Computer Winning Move________7d");
+					System.out.println("_______Computer Move________7d");
 		                }
 		
 			}
-	}
-//Defending Moves Computer
-	public void CompDefendingMove()
-	{
-		if(AllowComp == TWO )
-		{
-		 	for(int row = ONE; row <= THREE ; row++ )
-	                {
-	//Defending move in Rows
-	                        if( board[row+ONE] == board[row+TWO] && board[row + ONE ] == Player_Symbol && board[row] == '-' )
-	                        {
-	                                board[row] = Computer_Symbol;
-					AllowComp--;
-					System.out.println("_______Computer Defending Move________r");
-
-	                        }
-				else if( board[row] == board[row+TWO] && board[row] == Player_Symbol && board[row + ONE ] == '-' )
-				{
-					 board[row + ONE] = Computer_Symbol;
-					 AllowComp--;
-				  	 System.out.println("_______Computer Defending Move________r");
-
-				}
-				else if( board[row] == board[row+ONE] && board[row] == Player_Symbol && board[row + TWO ] == '-' )
-				{
-				 	board[row + TWO] = Computer_Symbol;
-					AllowComp--;
-					System.out.println("_______Computer Defending Move________r");
-
-				}
-	                }
-		}
-	//Defending move in Column
-       	        if(AllowComp == TWO )
-		{
-			for(int col = ONE; col <= THREE ; col++)
-	                {
-	                        if( board[col + THREE] == board[col + SIX] && board[col + THREE ] == Player_Symbol && board[col] == '-' )
-	                        {
-	                                board[col] = Computer_Symbol;
-					AllowComp--;
-					System.out.println("_______Computer Defending Move________c");
-
-                        }
-	                        else if( board[col] ==  board[col + SIX ] && board[col] == Player_Symbol && board[col + THREE ] == '-')
-	                        {
-	                                 board[col + THREE] = Computer_Symbol;
-					 AllowComp--;
-					 System.out.println("_______Computer Defending Move________c");
-
-	                        }
-	                        else if( board[col] == board[col + THREE] && board[col] == Player_Symbol && board[col + SIX] == '-' )
-	                        {
-	                                board[col + SIX] = Computer_Symbol;
-					AllowComp--; 
-					System.out.println("_______Computer Defending Move________c");
-
-	                        }
-	                }
-		}
-	//Defending move in Diagonal
-
-		if(AllowComp == TWO)
-		{
-	                if(((board[ONE] == board[NINE] && board[NINE] == Player_Symbol ) || (board[THREE] == board[SEVEN] && board[SEVEN] == Player_Symbol)) && ( board[FIVE] == '-' ))
-			{
-				board[FIVE] = Computer_Symbol; 
-				AllowComp--;
-				System.out.println("_______Computer Defending Move________5d");
-			}
-			else if(board[FIVE] == board[NINE] && board[NINE] == Player_Symbol && board[ONE] == '-' )
-			{
-				board[ONE] = Computer_Symbol;
-	                        AllowComp--;
-				System.out.println("_______Computer Defending Move________1d");
-
-			}
-			else if(board[FIVE] == board[ONE] && board[FIVE] == Player_Symbol && board[NINE] == '-')
-	                {
-	                        board[NINE] = Computer_Symbol;
-	                        AllowComp--;
-				System.out.println("_______Computer Defending Move________9d");
-		        }
-			else if(board[FIVE] == board[SEVEN] && board[SEVEN] == Player_Symbol && board[THREE] == '-' )
-	                {
-	                        board[THREE] = Computer_Symbol;
-		                AllowComp--;
-				System.out.println("_______Computer Defending Move________3d");
-
-	                }
-	                else if(board[FIVE] == board[THREE] && board[FIVE] == Player_Symbol && board[SEVEN] == '-' )
-	                {
-	                        board[SEVEN] = Computer_Symbol;
-	                      	AllowComp--;
-				System.out.println("_______Computer Defending Move________7d");
-	                }
-
-		}
 
 	}
+
 
 	public void CompChoiceMove()
 	{
 //choose Corners move
-	
+		int compposition ;
 		if(AllowComp == TWO)
 		{
-			int compposition = (random.nextInt(4)+1);
-			if(board[compposition] == '-')
+			if((board[ONE] == '-') || (board[THREE] == '-') || (board[SEVEN] == '-') || (board[NINE] == '-')  )
 			{
-				switch(compposition)
+				compposition = (random.nextInt(4)+1);
+			
+				if( compposition == ONE && board[ONE] == '-' )
 				{
-					case 1:
-						board[ONE] = Computer_Symbol;
-						break;
-
-					case 2:
-						board[THREE] = Computer_Symbol;
-						break;
-					case 3:
-						board[SEVEN] = Computer_Symbol;
-						break;
-					case 4:
-						board[NINE] = Computer_Symbol;
-						break;
+					board[ONE] = Computer_Symbol;
 				}
-			AllowComp--;
+				else if( compposition == TWO  && board[THREE] == '-' )
+				{
+					board[THREE] = Computer_Symbol;
+				}
+				else if( compposition == THREE  && board[SEVEN] == '-' )
+				{
+					board[SEVEN] = Computer_Symbol;
+				}
+				else if( compposition == FOUR  && board[NINE] == '-' )
+				{
+					board[NINE] = Computer_Symbol;
+				}
+				AllowComp--;
+			}
+			else
+			{
+				CompChoiceMove();
 			}
 		}
 	}
@@ -365,38 +281,46 @@ class TicTacToe
 				AllowComp--;
 			}
 		}
-	}	
-	
+	}
+
 	public void CompsideMove()
         {
 //choose Sides move
+		int compposition ;
+		if(AllowComp == TWO)
+		{
+			if((board[TWO] == '-') || (board[FOUR] == '-') || (board[SIX] == '-') || (board[EIGHT] == '-')  )
+			{
+				compposition = (random.nextInt(4)+1);
+			
+				if( compposition == ONE && board[TWO] == '-' )
+				{
+					board[TWO] = Computer_Symbol;
+				}
+				else if( compposition == TWO  && board[FOUR] == '-' )
+				{
+					board[FOUR] = Computer_Symbol;
+				}
+				else if( compposition == THREE  && board[SIX] == '-' )
+				{
+					board[SIX] = Computer_Symbol;
+				}
+				else if( compposition == FOUR  && board[EIGHT] == '-' )
+				{
+					board[EIGHT] = Computer_Symbol;
+				}
+				AllowComp--;
+			}
+			else
+			{
+				CompChoiceMove();
+			}
+		}
 
-                if(AllowComp == TWO)
-                {
-                        int compposition = (random.nextInt(4)+1);
-                        if(board[compposition] == '-')
-                        {
-                                switch(compposition)
-                                {
-                                        case 1:
-                                                board[TWO] = Computer_Symbol;
-                                                break;
 
-                                        case 2:
-                                                board[FOUR] = Computer_Symbol;
-                                                break;
-                                        case 3:
-                                                board[SIX] = Computer_Symbol;
-                                                break;
-                                        case 4:
-                                                board[EIGHT] = Computer_Symbol;
-                                                break;
-                                }
-                        AllowComp--;
-                        }
-                }
-        }
 
+
+	}
 	public void comprand()
 	{
 
@@ -406,6 +330,7 @@ class TicTacToe
 			if( board[compposition] != Player_Symbol && board[compposition] != Computer_Symbol)
 			{
 				board[compposition] = Computer_Symbol;
+				System.out.println(":");
 			}
 			else
 			{
@@ -418,29 +343,33 @@ class TicTacToe
 	{
 
 		System.out.println("++++++ Computer Turn ++++++");
+		System.out.println();
 		try{
-		Thread.sleep(2000);
-		WinningMove();
-		CompDefendingMove();
-		CompChoiceMove();
-		CompChooseCenter();
-		CompsideMove();
-	//	comprand();
-		DisplayBoard();
-               	System.out.println();
-		CheckWon(C_NUM,Computer_Symbol);
+			Thread.sleep(1500);
+			WinningMove(Computer_Symbol);   //Check for Winning Moves
+			WinningMove(Player_Symbol);	//Check for Blocking Moves
+//			CompDefendingMove();
+			CompChoiceMove();		// Check for Corners
+			CompChooseCenter();		// Check for Center
+			CompsideMove();			// Check for Sides
+			comprand();
+			DisplayBoard();
+//			Thread.sleep(1000);
+	               	System.out.println();
+			CheckWon(C_NUM,Computer_Symbol);
 		}
 		catch(Exception e)
 		{
 			 System.out.println(e);
 		}
+		count++;
 	}
 	
 
         public void CheckWon(int num, char Symbol)
         {
 
-	        for(int row = ONE; row < FOUR ; row++ )
+	        for(int row = ONE; row < EIGHT ; row += THREE )
 	        {
 //Winning in Rows
 	                if(board[row] == board[row+ONE] && board[row] == board[row+TWO] && board[row] == Symbol )
@@ -481,7 +410,7 @@ class TicTacToe
         }
 	public void CheckTie()
 	{
-		if( tiecount == FIVE  )
+		if( count == NINE  )
                 {
                         System.out.println("************ Match Tie ************ ");
                         System.exit(0);
@@ -493,25 +422,23 @@ class TicTacToe
 
         public void GamePlayed()
         {
-		int count;
+		int count = START_POSITION ;
                 if( toss == P_NUM)
                 {
-                        for(count = START_POSITION ; count <= NINE; count++ )
+                        while(count <= END_POSITION)
                         {
                                 PlayerPlay();
-				count++;
+				CheckTie();
                                 ComputerPlay();
-				tiecount++;
                         }
                 }
                 else
                 {
-                        for(count = START_POSITION ; count <= NINE ; count++ )
-                        {
+                        while(count <= END_POSITION)
+			{
                                 ComputerPlay();
-				count++;
+				CheckTie();
                                 PlayerPlay();
-				tiecount++;
                         }
                 }
 		CheckTie();
