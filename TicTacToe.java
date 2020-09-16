@@ -203,7 +203,7 @@ class TicTacToe
         }
 	public void CheckTie()
 	{
-		if( tiecount == FIVE  )
+		if( tiecount == FOUR  )
                 {
                         System.out.println("************ Match Tie ************ ");
                         System.exit(0);
@@ -216,6 +216,7 @@ class TicTacToe
         public void GamePlayed()
         {
 		int count;
+		CheckTie();
                 if( toss == P_NUM)
                 {
                         for(count = START_POSITION ; count <= NINE; count++ )
@@ -236,7 +237,7 @@ class TicTacToe
 				tiecount++;
                         }
                 }
-		CheckTie();
+
         }
 
 
