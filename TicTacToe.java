@@ -31,7 +31,6 @@ class TicTacToe
 			board[position] = '-';
 		}
 	}
-       
 	 public void DisplayBoard()
         {
                 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -46,8 +45,7 @@ class TicTacToe
         }
 	public void tossRandom()
         {
-
-                toss = random.nextInt(2);
+              toss = random.nextInt(2);
                 if( toss == P_NUM)
                 {
                         System.out.println("You Won The Toss");
@@ -57,12 +55,9 @@ class TicTacToe
                         System.out.println("Computer Won The Toss");
                 }
 		 System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
         }
-
         public void SymbolChoice()
         {
-
                 if( toss == P_NUM)
                 {
                         System.out.print("Select Letter as your choice X and O : ");
@@ -73,7 +68,6 @@ class TicTacToe
                                 Computer_Symbol = O;
                                 System.out.println("Player Letter : "+Player_Symbol);
                                 System.out.println("Computer Letter : "+Computer_Symbol);
-
                         }
                         else if( Player_Symbol == O )
                         {
@@ -87,7 +81,7 @@ class TicTacToe
                                 SymbolChoice();
                         }
 	                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                        }
+                 }
                 else
                 {
                         int computer_random = random.nextInt(2);
@@ -104,19 +98,15 @@ class TicTacToe
                         System.out.println("Player Letter : "+Player_Symbol);
                         System.out.println("Computer Letter : "+Computer_Symbol);
 	                System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-
                 }
         }
 //Player Playing Moves
         public void PlayerPlay()
         {
- 
 		System.out.println("++++++ Your Turn ++++++");
                 System.out.print("  Enter number to play  1 - 2 - 3 - 4 - 5 - 6 - 7 - 8 - 9 :");
-               System.out.println();
-		 position = scan.nextInt();
-
+         	System.out.println();
+		position = scan.nextInt();
                 if(board[position] == '-' )
                 {
                         board[position] = Player_Symbol;
@@ -145,19 +135,16 @@ class TicTacToe
 	                        {
 	                                board[row] = Computer_Symbol;
 					AllowComp--;
-
 	                        }
 	                        else if( board[row] ==  board[row + TWO ] && board[row] == Symbol && board[row + ONE ] == '-')
 	                        {
 	                                 board[row + ONE] = Computer_Symbol;
 					 AllowComp--;
-
 	                        }
 	                        else if( board[row] == board[row + ONE] && board[row] == Symbol && board[row + TWO] == '-')
 	                        {
 	                                board[row + TWO ] = Computer_Symbol;
 					AllowComp--; 
-
 	                        }
 	                }
 		}
@@ -170,41 +157,31 @@ class TicTacToe
 	                        {
 	                                board[col] = Computer_Symbol;
 					AllowComp--;
-
-
 	                        }
-
 	                        else if( board[col] ==  board[col + SIX ] && board[col] == Symbol && board[col + THREE ] == '-')
 	                        {
 	                                 board[col + THREE] = Computer_Symbol;
 					 AllowComp--;
-
-
 	                        }
 	                        else if( board[col] == board[col + THREE] && board[col] == Symbol && board[col + SIX] == '-')
 	                        {
 	                                board[col + SIX] = Computer_Symbol;
 					AllowComp--;
-
-
 	                        }
 	                }
 		}
 	//Winning of Defending move in Diagonal
-
 		if(AllowComp == TWO)
 		{
 	                if(((board[ONE] == board[NINE] && board[NINE] == Symbol ) || (board[THREE] == board[SEVEN] && board[SEVEN] == Symbol)) && ( board[FIVE] == '-'))
 			{
 				board[FIVE] = Computer_Symbol; 
 				AllowComp--;
-
 			}
 			else if(board[FIVE] == board[NINE] && board[NINE] == Symbol && board[ONE] == '-' )
 			{
 				board[ONE] = Computer_Symbol;
 	                        AllowComp--;
-
 			}
 			else if(board[FIVE] == board[ONE] && board[FIVE] == Symbol && board[NINE] == '-')
 	                {
@@ -215,14 +192,12 @@ class TicTacToe
 	                {
 	                        board[THREE] = Computer_Symbol;
 		                AllowComp--;
-
 	                }
 	                else if(board[FIVE] == board[THREE] && board[FIVE] == Symbol && board[SEVEN] == '-' )
 	                {
 	                        board[SEVEN] = Computer_Symbol;
 	                      	AllowComp--;
 	                }
-
 		}
 	}
 	public void CompCornerMove()
@@ -234,7 +209,6 @@ class TicTacToe
 			if((board[ONE] == '-') || (board[THREE] == '-') || (board[SEVEN] == '-') || (board[NINE] == '-')  )
 			{
 				compposition = (random.nextInt(4)+1);
-
 				if( compposition == ONE && board[ONE] == '-' )
 				{
 					board[ONE] = Computer_Symbol;
@@ -283,7 +257,6 @@ class TicTacToe
 			if((board[TWO] == '-') || (board[FOUR] == '-') || (board[SIX] == '-') || (board[EIGHT] == '-')  )
 			{
 				compposition = (random.nextInt(4)+1);
-			
 				if( compposition == ONE && board[TWO] == '-' )
 				{
 					board[TWO] = Computer_Symbol;
@@ -310,7 +283,6 @@ class TicTacToe
 				}
 			}
 		}
-
 	}
 	public void comprand()
 	{
@@ -330,7 +302,6 @@ class TicTacToe
 	}
 	public void ComputerPlay()
 	{
-
 		System.out.println("++++++ Computer Turn ++++++");
 		System.out.println();
 		try{
@@ -360,7 +331,6 @@ class TicTacToe
 	                if(board[row] == board[row+ONE] && board[row] == board[row+TWO] && board[row] == Symbol )
 	                {
 	                        DisplayWinner(num);
-
 	                }
                 }
 //Winning in Column
@@ -376,7 +346,6 @@ class TicTacToe
 	                {
 	                        DisplayWinner(num);
                 }
-
         }
         public void DisplayWinner(int win)
         {
@@ -390,7 +359,6 @@ class TicTacToe
                         System.out.println("************ You Lose The Match ************ ");
                         System.exit(0);
                 }
-
         }
 	public void CheckTie()
 	{
@@ -424,7 +392,6 @@ class TicTacToe
 		CheckTie();
         }
 //Main Program
-
 	public static void main(String[] args)
 	{
 		TicTacToe Game = new TicTacToe();
