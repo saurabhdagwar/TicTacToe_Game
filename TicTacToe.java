@@ -179,13 +179,11 @@ class TicTacToe
 			{
 				board[FIVE] = Computer_Symbol; 
 				AllowComp--;
-
 			}
 			else if(board[FIVE] == board[NINE] && board[NINE] == Symbol && board[ONE] == '-' )
 			{
 				board[ONE] = Computer_Symbol;
 	                        AllowComp--;
-
 			}
 			else if(board[FIVE] == board[ONE] && board[FIVE] == Symbol && board[NINE] == '-')
 	                {
@@ -196,7 +194,6 @@ class TicTacToe
 	                {
 	                        board[THREE] = Computer_Symbol;
 		                AllowComp--;
-
 	                }
 	                else if(board[FIVE] == board[THREE] && board[FIVE] == Symbol && board[SEVEN] == '-' )
 	                {
